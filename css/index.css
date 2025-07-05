@@ -1,0 +1,31 @@
+:root {
+    --grid-dimentions: 10; /* Number of cells in each row/column */
+    --grid-size: 50vh; 
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--grid-size) / var(--grid-dimentions)), 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(calc(var(--grid-size) / var(--grid-dimentions)), 1fr));
+    width: var(--grid-size);
+    height: var(--grid-size);
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: black;
+    border: 1px solid red;
+    box-sizing: border-box;
+}
+
+.alive {
+    background-color: white;
+}
