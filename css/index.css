@@ -1,11 +1,15 @@
 :root {
     --grid-dimentions: 10; /* Number of cells in each row/column */
-    --grid-size: 50vh; 
+    --grid-size: 70vh; 
 }
 
 body {
     width: 100%;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin: 0;
     padding: 0;
 }
@@ -16,6 +20,7 @@ body {
     grid-template-rows: repeat(auto-fill, minmax(calc(var(--grid-size) / var(--grid-dimentions)), 1fr));
     width: var(--grid-size);
     height: var(--grid-size);
+    border: 15px solid black;
 }
 
 .cell {
@@ -28,4 +33,55 @@ body {
 
 .alive {
     background-color: white;
+}
+
+
+/* toolbox */
+#toolbox {
+    width: var(--grid-size);
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 15px solid black;
+}
+
+#toolbox button {
+    min-width: 5vh;
+    height: 5vh;
+    background-color: lightslategray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#toolbox #playBtn {
+    color: white;
+    background-color: seagreen;
+}
+
+#toolbox #stopBtn {
+    color: white;
+    background-color: brown;
+}
+
+
+
+
+
+
+
+
+/* Hover effect */
+.editable:hover .cell:not(:hover) {
+    filter: brightness(30%);
+    transition-duration: 250ms;
+}
+
+.editable:not(:hover) .cell {
+    transition-duration: 250ms;
+}
+
+.editable .cell:hover {
+    border-color: yellow;
 }

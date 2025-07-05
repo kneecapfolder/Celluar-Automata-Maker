@@ -2,21 +2,29 @@
 <html lang="en">
 
 <head>
-    <title>Document</title>
+    <title>Cellular Automata Maker</title>
 
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/index.css">
-
+    
     <!-- scripts -->
     <script src="../js/main.js" defer></script>
 </head>
 
 <body>
-    <div id="board">
+    <div id="toolbox">
+        <button id="playBtn"><i class="fa-solid fa-play"> play</i></button>
+        <button hidden id="stopBtn"><i class="fa-solid fa-stop"> stop</i></button>
+        <button id="stepBtn"><i class="fa-solid fa-shoe-prints"> step</i></button>
+        <button onclick="resetGrid()"><i class="fa-solid fa-rotate-right"></i></button>
+    </div>
+
+    <div id="board" class="editable">
         
     </div>
 </body>
