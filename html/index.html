@@ -18,10 +18,23 @@
 
 <body>
     <div id="toolbox">
-        <button id="playBtn"><i class="fa-solid fa-play"> play</i></button>
-        <button hidden id="stopBtn"><i class="fa-solid fa-stop"> stop</i></button>
-        <button id="stepBtn"><i class="fa-solid fa-shoe-prints"> step</i></button>
-        <button onclick="resetGrid()"><i class="fa-solid fa-rotate-right"></i></button>
+        <ul style="flex-direction: column;">
+            <li>
+                <label for="gridToggle">show grid</label>
+                <input checked id="gridToggle" name="gridToggle" type="checkbox">
+            </li>
+            <li>
+                <label for="genDur">gen duration</label>
+                <input checked id="genDur" min="1" max="1000" name="genDur" type="number">
+            </li>
+        </ul>
+
+        <div>
+            <button onclick="togglePlayStop()" id="playBtn"><i class="fa-solid fa-play"> play</i></button>
+            <button onclick="togglePlayStop()" hidden id="stopBtn"><i class="fa-solid fa-stop"> stop</i></button>
+            <button id="stepBtn"><i class="fa-solid fa-shoe-prints"> step</i></button>
+            <button id="resetBtn"><i class="fa-solid fa-rotate-right"></i></button>
+        </div>
     </div>
 
     <div id="board" class="editable">

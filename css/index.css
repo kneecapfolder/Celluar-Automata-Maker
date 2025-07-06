@@ -1,6 +1,12 @@
 :root {
     --grid-dimentions: 10; /* Number of cells in each row/column */
     --grid-size: 70vh; 
+    --cell-border: 1px;
+}
+
+* {
+    font-family:  'Font Awesome 6 Free';
+    font-weight: bolder;
 }
 
 body {
@@ -27,8 +33,12 @@ body {
     width: var(--cell-size);
     height: var(--cell-size);
     background-color: black;
-    border: 1px solid red;
+    border: var(--cell-border) solid gray;
     box-sizing: border-box;
+}
+
+.editable .cell {
+    border-color: red;
 }
 
 .alive {
@@ -41,9 +51,8 @@ body {
     width: var(--grid-size);
     height: 9vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 10px;
     border: 15px solid black;
 }
 
@@ -55,14 +64,29 @@ body {
     cursor: pointer;
 }
 
+#toolbox > * {
+    display: flex;
+    gap: 10px;
+}
+
 #toolbox #playBtn {
     color: white;
+    width: 6vh;
     background-color: seagreen;
 }
 
 #toolbox #stopBtn {
+    width: 6vh;
     color: white;
     background-color: brown;
+}
+
+#toolbox input[type="checkbox"] {
+    margin: 0;
+}
+
+#toolbox input[type="number"] {
+    width: 5vh;
 }
 
 
@@ -83,5 +107,5 @@ body {
 }
 
 .editable .cell:hover {
-    border-color: yellow;
+    border: 1px solid yellow;
 }

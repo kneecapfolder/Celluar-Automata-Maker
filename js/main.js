@@ -2,51 +2,72 @@ const board = document.getElementById("board");
 const playBtn = document.getElementById("playBtn");
 const stopBtn = document.getElementById("stopBtn");
 const stepBtn = document.getElementById("stepBtn");
+const resetBtn = document.getElementById("resetBtn");
+const gridToggleInput = document.getElementById("gridToggle");
+const genDurInput = document.getElementById("genDur");
 
 let gridSize = 30; // gridSize x gridSize
 let grid = [];
 let running = false;
+let genDur = 50;
 
 
 // Start
 resetGrid();
 document.documentElement.style.setProperty('--grid-dimentions', gridSize);
+genDurInput.value = genDur;
 
 
 
-
-
-
-
-onkeydown = () => step();
-
-playBtn.onclick = () => {
-    running = true;
-    board.className = '';
-    playBtn.hidden = true;
-    stopBtn.hidden = false;
-    run();
+onkeydown = (e) => {
+    if (e.key == ' ')
+        togglePlayStop();
 }
 
-stopBtn.onclick = () => {
-    running = false;
-    board.className = 'editable';
-    stopBtn.hidden = true;
-    playBtn.hidden = false;
+stepBtn.onclick = () => {
+    if (!running)
+        step();
+};
+
+resetBtn.onclick = () => {
+    if (running)
+        togglePlayStop();
+    resetGrid();
 }
 
-stepBtn.onclick = step;
+
+
+gridToggleInput.onchange = () => {
+    document.documentElement.style.setProperty('--cell-border', `${gridToggleInput.checked? 1: 0}px`);
+}
+
+genDurInput.onchange = () => {
+    genDur = genDurInput.value;
+}
+
+
+
+
+
+
 
 function run() {
     if (!running)
         return;
 
-
     step();
 
-    setTimeout(run, 50);
+    setTimeout(run, genDur);
 }
 
+function togglePlayStop() {
+    running = !running;
+    board.className = running? '': 'editable';
+    playBtn.hidden = running;
+    stopBtn.hidden = !running;
+    if (running)
+        run();
+}
 
 function step() {
     let newGrid = grid;
@@ -71,10 +92,7 @@ function step() {
         }
     }
     
-    console.log(grid);
     gird = newGrid;
-    console.log(grid);
-
 
     updateGrid();
 }
@@ -88,13 +106,14 @@ function updateGrid() {
         if (grid[Math.floor(i / gridSize)][i % gridSize] === 1) 
             cell.classList.add("alive");
         
-
-        cell.onclick = () => getCell(i);
+        if (!running)
+            cell.onclick = () => getCell(i);
         board.appendChild(cell);
     }
 }
 
 function resetGrid() {
+    // console.log('resetBtn');
     grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0));
     updateGrid();
 }
@@ -106,7 +125,7 @@ function cycleRange(n, min, max) {
 function getCell(index) {
     let x = index % gridSize;
     let y = Math.floor(index / gridSize);
-    // console.log(`Cell clicked: ${x}, ${y}`);
+    console.log(`Cell clicked: ${x}, ${y}`);
 
     grid[y][x] = grid[y][x] === 1 ? 0 : 1; // Toggle cell state
     
