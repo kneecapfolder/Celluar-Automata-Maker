@@ -67,6 +67,7 @@ function togglePlayStop() {
     stopBtn.hidden = !running;
     if (running)
         run();
+    else updateGrid();
 }
 
 function step() {
@@ -105,7 +106,6 @@ function updateGrid() {
         cell.classList.add("cell");
         if (grid[Math.floor(i / gridSize)][i % gridSize] === 1) 
             cell.classList.add("alive");
-        
         if (!running)
             cell.onclick = () => getCell(i);
         board.appendChild(cell);
