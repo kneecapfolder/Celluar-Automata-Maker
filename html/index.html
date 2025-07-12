@@ -17,29 +17,32 @@
 </head>
 
 <body>
-    <div id="toolbox">
-        <ul style="flex-direction: column;">
-            <li>
-                <label for="gridToggle">show grid</label>
-                <input checked id="gridToggle" name="gridToggle" type="checkbox">
-            </li>
-            <li>
-                <label for="genDur">gen duration</label>
-                <input checked id="genDur" min="1" max="1000" name="genDur" type="number">
-            </li>
-        </ul>
+    <main>
+        <div id="toolbox">
+            <div style="flex-direction: column;">
+                <div>
+                    <label for="gridToggle">show grid</label>
+                    <input checked id="gridToggle" name="gridToggle" type="checkbox">
+                </div>
+                <div>
+                    <label for="genDur">gen duration</label>
+                    <input checked id="genDur" min="1" max="1000" name="genDur" type="number">
+                </div>
+            </div>
 
-        <div>
-            <button onclick="togglePlayStop()" id="playBtn"><i class="fa-solid fa-play"> play</i></button>
-            <button onclick="togglePlayStop()" hidden id="stopBtn"><i class="fa-solid fa-stop"> stop</i></button>
-            <button id="stepBtn"><i class="fa-solid fa-shoe-prints"> step</i></button>
-            <button id="resetBtn"><i class="fa-solid fa-rotate-right"></i></button>
+            <div>
+                <button onclick="togglePlayStop()" id="playBtn"><i class="fa-solid fa-play"></i> play</button>
+                <button onclick="togglePlayStop()" hidden id="stopBtn"><i class="fa-solid fa-stop"></i> stop</button>
+                <button id="stepBtn"><i class="fa-solid fa-shoe-prints"></i> step</button>
+                <button id="resetBtn"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
         </div>
-    </div>
 
-    <div id="board" class="editable">
-        
-    </div>
+        <div id="board" class="editable">
+            
+        </div>
+    </main>
+
 </body>
 
 </html>

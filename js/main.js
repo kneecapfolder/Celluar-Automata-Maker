@@ -13,15 +13,22 @@ let genDur = 50;
 
 
 // Start
-resetGrid();
+clearGrid();
 document.documentElement.style.setProperty('--grid-dimentions', gridSize);
 genDurInput.value = genDur;
 
 
 
 onkeydown = (e) => {
-    if (e.key == ' ')
-        togglePlayStop();
+    switch(e.key) {
+        case ' ':
+            togglePlayStop();
+            break;
+
+        case 'r':
+            reset();
+            break;
+    }
 }
 
 stepBtn.onclick = () => {
@@ -29,10 +36,12 @@ stepBtn.onclick = () => {
         step();
 };
 
-resetBtn.onclick = () => {
+resetBtn.onclick = reset;
+
+function reset() {
     if (running)
         togglePlayStop();
-    resetGrid();
+    clearGrid();
 }
 
 
@@ -72,7 +81,7 @@ function togglePlayStop() {
 
 function step() {
     let newGrid = grid;
-    resetGrid();
+    clearGrid();
 
     for(let y = 0; y < gridSize; y++) {
         for(let x = 0; x < gridSize; x++) {
@@ -112,7 +121,7 @@ function updateGrid() {
     }
 }
 
-function resetGrid() {
+function clearGrid() {
     // console.log('resetBtn');
     grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(0));
     updateGrid();
