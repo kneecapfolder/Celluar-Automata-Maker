@@ -25,6 +25,17 @@
                     <input checked id="gridToggle" name="gridToggle" type="checkbox">
                 </div>
                 <div>
+                    <label for="hoverToggle">hover effect</label>
+                    <input checked id="hoverToggle" name="hoverToggle" type="checkbox">
+                </div>
+            </div>
+            
+            <div style="flex-direction: column;">
+                <div>
+                    <label for="gridSize">grid size</label>
+                    <input style="width: 45px;" checked id="gridSize" min="1" max="1000" name="gridSize" type="number">
+                </div>
+                <div>
                     <label for="genDur">gen duration</label>
                     <input checked id="genDur" min="1" max="1000" name="genDur" type="number">
                 </div>
@@ -38,8 +49,31 @@
             </div>
         </div>
 
-        <div id="board" class="editable">
+        <div id="board" class="editable hover">
             
+        </div>
+
+        <div id="rulesController">
+            <button onclick="addNewTemplate()"><i class="fa-solid fa-plus"></i></button>
+            <button onclick="clearBlocks()" id="clearBlocks"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+
+        <div id="cells">
+            <div class="state-template">
+                <div>
+                    <h3>neighbours:</h3>
+                    <button><i class="fa-solid fa-caret-left"></i></button>
+                    <h2>0</h2>
+                    <button><i class="fa-solid fa-caret-right"></i></button>
+                </div>
+                <i class="fa-solid fa-arrow-right"></i>
+                <div>
+                    <h3>state:</h3>
+                    <button><i class="fa-solid fa-caret-left"></i></button>
+                    <h2>0</h2>
+                    <button><i class="fa-solid fa-caret-right"></i></button>
+                </div>
+            </div>
         </div>
     </main>
 

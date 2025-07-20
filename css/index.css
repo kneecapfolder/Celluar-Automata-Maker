@@ -9,6 +9,11 @@
     font-weight: bolder;
 }
 
+::selection {
+    background-color: red;
+    color: black;
+}
+
 body {
     width: 100%;
     height: 100vh;
@@ -22,13 +27,29 @@ body {
     animation: bg 8s linear infinite;
 }
 
+main {
+    display: grid;
+    grid-template-columns: auto 300px;
+    grid-template-areas:
+        'toolbox rules'
+        'board states'
+    ;
+    box-shadow: black 0 0 50px;
+    border-radius: 10px;
+}
+
+main > * {
+    border: 10px solid black;
+}
+
 #board {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(calc(var(--grid-size) / var(--grid-dimentions)), 1fr));
     grid-template-rows: repeat(auto-fill, minmax(calc(var(--grid-size) / var(--grid-dimentions)), 1fr));
     width: var(--grid-size);
     height: var(--grid-size);
-    border: 10px solid black;
+    background-color: black;
+    border-bottom-left-radius: 10px;
 }
 
 .cell {
@@ -43,28 +64,25 @@ body {
     border-color: red;
 }
 
-.alive {
-    background-color: white;
-}
-
-
 /* toolbox */
 #toolbox {
     width: var(--grid-size);
     height: 100px;
     background-color: white;
+    background-color: #0e0e0e;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border: 10px solid black;
+    color: white;
+    border-top-left-radius: 10px;
 }
 
-#toolbox button {
+#toolbox button, #rulesController button {
     min-width: 50px;
     padding: 5px;
     height: 50px;
     background-color: lightslategray;
-    border: 2px solid black;
+    border: 2px solid darkslategray;
     border-radius: 4px;
     text-wrap-mode: nowrap;
     cursor: pointer;
@@ -79,16 +97,20 @@ body {
     gap: 10px;
 }
 
-#toolbox #playBtn {
+#toolbox #playBtn, #toolbox #stopBtn {
     color: white;
     width: 70px;
+    border-color: white;
+}
+
+#toolbox #playBtn {
     background-color: seagreen;
 }
 
-#toolbox #stopBtn {
-    color: white;
-    width: 70px;
+#toolbox #stopBtn, #rulesController #clearBlocks {
     background-color: brown;
+    color: white;
+    border-color: white;
 }
 
 #toolbox input[type="checkbox"] {
@@ -103,8 +125,74 @@ body {
     width: 65px;
 }
 
+#rulesController {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    grid-area: rules;
+    background-color: #0e0e0e;
+    border-top-right-radius: 10px;
+}
+
+#rulesController button {
+    width: 50px;
+    aspect-ratio: 1;
+}
 
 
+/* cells container */
+#cells {
+    grid-area: states;
+    background-color: #0e0e0e;
+    border-bottom-right-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.state-template {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: inherit;
+    height: 100px;
+    /* background-color: white; */
+    border: 1px solid red;
+    border-radius: 5px;
+    color: white;
+    font-size: xx-large;
+}
+
+.state-template > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.state-template h3 {
+    position: absolute;
+    margin-bottom: 70px;
+    font-size: 12px;
+}
+
+.state-template button {
+    border: none;
+    background: red;
+    color: white;
+    width: 30px;
+    height: 32px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+.state-template button:hover {
+    font-size: xx-large;
+}
 
 
 
@@ -113,16 +201,16 @@ body {
 
 
 /* Hover effect */
-.editable:hover .cell:not(:hover) {
+.hover:hover .cell:not(:hover) {
     filter: brightness(30%);
     transition-duration: 250ms;
 }
 
-.editable:not(:hover) .cell {
+.hover:not(:hover) .cell {
     transition-duration: 250ms;
 }
 
-.editable .cell:hover {
+.hover .cell:hover {
     border: 1px solid yellow;
 }
 
